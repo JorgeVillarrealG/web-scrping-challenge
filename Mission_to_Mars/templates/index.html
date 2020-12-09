@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <title>Mars</title>
+</head>
+<body>
+    <div class="container-fluid bg-color-primary">
+        <div class="bg-light text-center bs-primary">
+            <h3>
+                Welcome to Mars Data Site
+            </h3>
+        </div>
+    </div>
+    <div class="container-fluid primary">
+        <div class="row bg-light">
+            <p><a class="btn btn-primary btn-lg text-center" href="/scrape" role="button">Get the latest Data about Mars Here</a></p>
+        </div>
+    </div>
+    <!-- Mars News -->
+    <div class="container-primary">
+        <div class="row text-center bg-green">
+            <div class="col-sm-12">
+                <h1 class="title">What´s new in Mars?</h1>
+                <h3 class="text">{{mars["Title"] }}</h3>
+                <p class="text">{{mars["Description"]}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Feature image-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <h2 class="text-info">Feature Image</h2>
+                <img src="{{mars['imageURL']}}" alt="Mars Image" class="img-fluid">
+            </div>
+            <!-- Facts -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card bg-primary mb-3">
+                    <div class="card-header">
+                        <b>Mars Facts</b>
+                    </div>
+                    <div class="card-body table-striped">
+                        {{mars["facts_table"]|safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hemispheres -->
+    <div class="container-fluid">
+        <div class="row">
+            {% for h in mars["hemispheres"] %}
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <div class="card bg-grey">
+                    <div class="card-header">{{h["Hemisphere"]}}</div>
+                    <div class="card-body">
+                        <img src="{{h['URL']}}" alt="{{h['Hemisphere']}}" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    
+</body>
+</html>
